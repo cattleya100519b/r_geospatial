@@ -1,0 +1,6 @@
+services:
+  app:
+    build: . # Default
+    volumes:
+      - ./src:/app/src # ローカルのsrcをコンテナの/app/srcにマウント
+    platform: ${DOCKER_DEFAULT_PLATFORM}
