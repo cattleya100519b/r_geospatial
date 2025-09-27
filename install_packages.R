@@ -1,12 +1,15 @@
 packages <- c(
-  "IRkernel",   # Jupyter Notebook で R を使用するためのカーネル
-  "tidyverse",  # データ解析のためのパッケージ群（ggplot2, dplyr などを含む）
-  "ggplot2",    # データ可視化ライブラリ
-#   "dplyr",    # データ操作用のツール（tidyverse に含まれるが個別にも指定可能）
-#   "shiny",    # Web アプリケーションを作成するためのパッケージ
-  "data.table", # 高速なデータ処理・集計を可能にするライブラリ
-  "pbdZMQ"      # ZeroMQ メッセージングライブラリの R バインディング
+  "IRkernel",     # Jupyter Notebook で R を使用するためのカーネル
+  "sf",           # GISデータ処理
+  "NipponMap",    # 日本地図
+  "RColorBrewer", # カラーパレット
+  "geojsonio"     # sf オブジェクト（st_sf クラス）を notebook で表示
 )
 
-# 必要なパッケージを一括インストール
-lapply(packages, install.packages)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg)
+  }
+}
+
+invisible(lapply(packages, install_if_missing))
